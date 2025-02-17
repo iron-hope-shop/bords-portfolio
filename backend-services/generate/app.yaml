@@ -1,0 +1,35 @@
+runtime: python39
+service: generate
+
+entrypoint: gunicorn -b :$PORT app:app --timeout 120 --worker-class gthread --threads 8 --workers 1
+
+instance_class: F2
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 1
+  max_concurrent_requests: 80
+
+inbound_services:
+- warmup
+
+readiness_check:
+  app_start_timeout_sec: 300
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  path: "/_ah/health"
+
+env_variables:
+  PYTHONUNBUFFERED: "True"
+  FLASK_ENV: "production"
+  FLASK_DEBUG: "0"
+
+handlers:
+- url: /.*
+  script: auto
+  secure: always
+
+runtime_config:
+  python_version: 3

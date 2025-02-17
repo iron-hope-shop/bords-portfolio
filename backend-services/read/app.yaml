@@ -1,0 +1,15 @@
+runtime: nodejs20
+service: read
+instance_class: F2
+
+automatic_scaling:
+  min_idle_instances: 1
+  max_idle_instances: automatic
+  min_pending_latency: automatic
+  max_pending_latency: automatic
+
+env_variables:
+  NODE_ENV: "production"
+
+includes:
+- secret.yaml

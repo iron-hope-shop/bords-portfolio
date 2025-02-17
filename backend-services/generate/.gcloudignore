@@ -1,0 +1,19 @@
+# Exclude git history and configuration
+.git
+.gitignore
+
+# Exclude virtual environment
+venv/
+*.pyc
+__pycache__/
+
+# Exclude development and test files
+*.test.py
+test/
+
+# Exclude Cloud Run specific files
+Dockerfile
+cloudbuild.yaml
+
+# Exclude local environment files
+.env

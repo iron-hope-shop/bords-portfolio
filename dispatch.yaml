@@ -1,0 +1,7 @@
+dispatch:
+  - url: "*/api/generate/*"
+    service: generate
+  - url: "*/api/read/*"
+    service: read
+  - url: "*/*"
+    service: default

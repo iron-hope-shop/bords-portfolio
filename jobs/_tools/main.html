@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDKit.js SMARTS Reaction Renderer</title>
+    <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #reactionImage {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SMARTS Reaction Renderer</h1>
+    <div id="reactionImage"></div>
+    <div id="error"></div>
+
+    <script>
+        window.onload = function() {
+            initRDKitModule().then(function(RDKit) {
+                if (!RDKit || !RDKit.ChemicalReaction) {
+                    throw new Error("RDKit or ChemicalReaction is not available");
+                }
+                renderReaction(RDKit);
+            }).catch(function(error) {
+                console.error("Error initializing RDKit:", error);
+                document.getElementById('error').textContent = "Error: " + error.message;
+            });
+        };
+
+        function renderReaction(RDKit) {
+            try {
+                var smartsReaction = "[SH:1][CH2:2][CH2:3][OH:4].[C:5]1(=[O:12])[CH:10]=[CH:9][C:8](=[O:11])[CH:7]=[CH:6]1>>[OH:4][CH2:3][CH2:2][S:1][C:10]1[C:5](=[O:12])[CH:6]=[C:7]([S:1][CH2:2][CH2:3][OH:4])[C:8](=[O:11])[CH:9]=1";
+
+                var rxn = RDKit.ChemicalReaction.ReactionFromSmarts(smartsReaction);
+                var drawer = new RDKit.MolDraw2DCairo(800, 300);
+                drawer.drawReaction(rxn);
+
+                var png = drawer.getDrawingText();
+                var img = document.createElement('img');
+                img.src = 'data:image/png;base64,' + btoa(png);
+                document.getElementById('reactionImage').appendChild(img);
+
+                rxn.delete();
+                drawer.delete();
+            } catch (error) {
+                console.error("Error rendering reaction:", error);
+                document.getElementById('error').textContent = "Error rendering reaction: " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

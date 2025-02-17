@@ -1,0 +1,30 @@
+runtime: nodejs20
+# service: dev
+
+handlers:
+  # Serve index.html for root requests
+  - url: /
+    static_files: dist/index.html
+    upload: dist/index.html
+    secure: always
+    http_headers:
+      Cache-Control: "no-cache, no-store, must-revalidate"
+      Pragma: no-cache
+      Expires: 0
+
+  # Serve static assets with caching for improved performance
+  - url: /(.*\.(js|css|png|jpg|jpeg|gif|ico|json))$
+    static_files: dist/\1
+    upload: dist/(.*\.(js|css|png|jpg|jpeg|gif|ico|json))$
+    secure: always
+    expiration: "15m"
+
+  # Catch-all handler to serve index.html for client-side routing
+  - url: /(.*)
+    static_files: dist/index.html
+    upload: dist/index.html
+    secure: always
+    http_headers:
+      Cache-Control: "no-cache, no-store, must-revalidate"
+      Pragma: no-cache
+      Expires: 0
