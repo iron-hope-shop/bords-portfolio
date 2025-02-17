@@ -1,4 +1,3 @@
-// ResultCard.styles.js
 import { styled } from '@mui/material/styles';
 import { Box, Typography, Modal, IconButton } from '@mui/material';
 
@@ -6,7 +5,7 @@ export const TruncatedText = styled(Typography)({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-  maxWidth: '100%', // Adjust as needed
+  maxWidth: '100%',
 });
 
 export const CardContainer = styled(Box)(({ theme }) => ({
@@ -117,21 +116,21 @@ export const StyledModal = styled(Modal)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.7)', // Darker tint
-  backdropFilter: 'blur(5px)', // Blurry effect
-  width: '100vw', // Full viewport width
-  height: '100vh', // Full viewport height
-  position: 'fixed', // Ensure it covers the entire screen
+  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  backdropFilter: 'blur(5px)',
+  width: '100vw',
+  height: '100vh',
+  position: 'fixed',
   top: 0,
   left: 0,
 });
 
 export const ModalContent = styled('img')({
-  maxWidth: '80%', // Adjust to account for padding
+  maxWidth: '80%',
   objectFit: 'contain',
-  boxSizing: 'border-box', // Ensure padding is included in the element's total width and height
-  margin: 'auto', // Center the content
-  display: 'block', // Ensure the image is treated as a block element
+  boxSizing: 'border-box',
+  margin: 'auto',
+  display: 'block',
 });
 
 export const CloseButton = styled(IconButton)(({ theme }) => ({
