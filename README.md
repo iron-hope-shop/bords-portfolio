@@ -28,7 +28,6 @@ BORDS is an advanced **reaction search engine** built on **Google's Open Reactio
 ---
 
 ## **🔍 What Makes BORDS Unique?**
-✅ **Direct integration with Google ORD** – Live synchronization with ORD ensures **up-to-date** reaction data.  
 ✅ **High-speed search (seconds vs. 30+ sec)** – Built on **Elastic Enterprise App Search** for optimized query performance.  
 ✅ **Rich metadata support** – Displays reaction conditions, time-course data, and structural representations.  
 ✅ **Scalable cloud architecture** – Runs on **Google Cloud App Engine** with **autoscaling**.  
@@ -139,8 +138,9 @@ Achieves **44ms search time on average**.
 
 ---
 
-## **📜 License**
-BORDS is open-source under the **CC-BY-SA license**.
+## **📜 Licenses**
+> **This project utilizes data from the [Google Open Reaction Database (ORD)](https://github.com/open-reaction-database/ord-data), licensed under the [CC-BY-SA 4.0 License](https://github.com/open-reaction-database/ord-data/blob/main/LICENSE).**
+> **BORDS is an open-source project licensed under the [CC-BY-SA 4.0 License](./LICENSE).**  
 
 ---
 
